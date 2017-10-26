@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { AngularFireModule } from "angularfire2";
 import { AngularFirestoreModule } from "angularfire2/firestore";
 import { AngularFireAuthModule } from "angularfire2/auth";
+import { RouterModule, Route } from "@angular/router";
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -17,6 +18,13 @@ var firebaseConfig = {
   "projectId": "tolgalist"
 };
 
+var route: Route[] = [
+  { path: "home", component: HomeComponent },
+  { path: "videos", component: VideosComponent },
+  { path: "", redirectTo:"home", component: HomeComponent },        
+  { path: "**", component: HomeComponent },   
+];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +35,8 @@ var firebaseConfig = {
     BrowserModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    RouterModule.forRoot(route),
   ],
   providers: [],
   bootstrap: [AppComponent]
