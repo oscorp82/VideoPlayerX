@@ -21,8 +21,8 @@ var firebaseConfig = {
 var route: Route[] = [
   { path: "home", component: HomeComponent },
   { path: "videos", component: VideosComponent },
-  { path: "", redirectTo:"home", component: HomeComponent },        
-  { path: "**", component: HomeComponent },   
+  { path: "", redirectTo: "home", pathMatch: "full" },
+  { path: "**", component: HomeComponent },
 ];
 
 @NgModule({
